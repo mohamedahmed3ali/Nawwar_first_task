@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
+
+  get 'frienships/create'
+  
+  get ':controller/:action/:id'
+  
   get 'friendships/index'
-
-  get 'friendships/create'
-
+  
   get 'friendships/delete'
+
+  get 'profile/find_friends'
 
   root 'profile#index', as: :profile_root
   get 'profile/index'
