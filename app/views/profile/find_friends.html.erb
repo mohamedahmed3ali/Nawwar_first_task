@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+	<div class = "row">
+		<div class = "white-column"><%= user.id%></div>
+		<div class = "grey-column"><%= user.username%></div>
+		<img src="<%= user.image.url.to_s %>" style="width:60px;height:60px" class = "profile-image"></img>
+	</div>
+<%end%>

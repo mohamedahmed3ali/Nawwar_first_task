@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Nawwar</title>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true  %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body class = "body">
+	<div class = "navbar">
+
+		<h1 class = "title"> <%= link_to("Nawwarbook", profile_root_path,:id => current_user.id, :class => 'title')%> </h1> 
+    <% if user_signed_in? %> 
+        <img src="<%= current_user.image.url.to_s %>" style="width:50px;height:50px" class = "image"></img>
+    <%end%>
+	</div>
+  <div class = "navbar2", id = "navbar2">
+  <% if !user_signed_in? %> 
+    	<%= link_to('SIGNUP', new_user_registration_path, :class => 'signup') %>
+    	<%=link_to('LOGIN' ,new_user_session_path  , :class =>'login')%>
+  <%else%>
+      <h4 class = "signup"> Welcome <%= current_user.username%></h4>	
+      <%=link_to "Sign Out", destroy_user_session_path , method: :delete , :class => "signout" %>
+  <%end%>
+	</div>
+	<!-- <p class="notice"><%= notice %></p> -->
+  <!--  	<p class="alert"><%= alert %></p> -->
+
+  <%= yield %>
+</body>
+</html>
