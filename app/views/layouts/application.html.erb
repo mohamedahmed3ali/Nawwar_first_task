@@ -8,20 +8,28 @@
 </head>
 <body class = "body">
 	<div class = "navbar">
-
-		<h1 class = "title"> <%= link_to("Nawwarbook", profile_root_path,:id => current_user.id, :class => 'title')%> </h1> 
+    <!-- title -->
+		<h1 class = "title"> <%= link_to("Nawwarbook", profile_root_path, :class => 'title')%> </h1> 
+    
+    <!-- shows the image of the user if signed in -->
     <% if user_signed_in? %> 
         <img src="<%= current_user.image.url.to_s %>" style="width:50px;height:50px" class = "image"></img>
     <%end%>
-	</div>
+	
+  </div>
+
   <div class = "navbar2", id = "navbar2">
-  <% if !user_signed_in? %> 
-    	<%= link_to('SIGNUP', new_user_registration_path, :class => 'signup') %>
-    	<%=link_to('LOGIN' ,new_user_session_path  , :class =>'login')%>
-  <%else%>
-      <h4 class = "signup"> Welcome <%= current_user.username%></h4>	
-      <%=link_to "Sign Out", destroy_user_session_path , method: :delete , :class => "signout" %>
-  <%end%>
+    <!-- signup and login are viewed if the user is not signed in -->
+    <% if !user_signed_in? %> 
+      	<%= link_to('SIGNUP', new_user_registration_path, :class => 'signup') %>
+      	<%=link_to('LOGIN' ,new_user_session_path  , :class =>'login')%>
+    <%else%>
+        <!-- myfriends ,find friends and signout buton are viewed if the user is signed in -->
+        <h4 class = "signup"> Welcome <%= current_user.username%></h4>	
+        <%=link_to "My Friends", {:controller => 'friendships', :action => 'index'}, :id => current_user.id %>
+        <%=link_to "Find Friends", {:controller => 'profile', :action => 'find_friends'} %>
+        <%=link_to "Sign Out", destroy_user_session_path , method: :delete , :class => "signout" %>
+    <%end%>
 	</div>
 	<!-- <p class="notice"><%= notice %></p> -->
   <!--  	<p class="alert"><%= alert %></p> -->

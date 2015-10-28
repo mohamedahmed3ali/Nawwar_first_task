@@ -3,15 +3,18 @@ class User < ActiveRecord::Base
   	# :confirmable, :lockable, :timeoutable and :omniauthable
  	 devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-
+   # performs the many to many association between the users and themselves through frienships model
  	 has_many :friendships, :foreign_key => :user1_id, :dependent => :destroy
 
  	 has_many(:delete_frienship, :class_name => :Frienship,
       :foreign_key => :post_b_id, :dependent => :destroy)
   
-  	has_many :friends, :class_name => :User, :through => :friendships, :source => :user2_id
+  	has_many :friends, :class_name => :User, :through => :friendships, :source => :user2
 
-	mount_uploader :image, AvatarUploader 
+    # allow the user to have an image using Avatar uploader
+	  mount_uploader :image, AvatarUploader 
+
+    # signup validations
 
     validates_presence_of :username , :message => "Field Cannot be blank"
     validates_length_of :username , :maximum => 12 , :message => "Is Too Long(maximum is 12 characters)"  
@@ -27,4 +30,6 @@ class User < ActiveRecord::Base
     validates :email ,:allow_blank => true ,:uniqueness => {:message => "Already Registerd"}
     validates_confirmation_of :email, {:message => "Please , Re-enter Your Email"}
     scope :sorted, lambda { order("users.id DESC")}
+
+    # end of signup validations
 end
