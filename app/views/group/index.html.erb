@@ -8,7 +8,10 @@
 
 			<!-- add is a button to add a friend  -->
         	<%=link_to "show", { :action => 'show', :id => group.id}%>
-        	<%=link_to "follow", { :action => 'follow', :id => group.id}%>
-
+        	<% if !is_follower?(current_user.id, group.id)%>
+        		<%=link_to "follow", { :action => 'follow', :id => group.id}%>
+        	<%else%>
+        		<%=link_to "unfollow", { :action => 'unfollow', :id => group.id}%>
+        	<%end%>
 	</div>
 <%end%>

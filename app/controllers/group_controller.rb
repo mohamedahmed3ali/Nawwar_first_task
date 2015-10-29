@@ -38,7 +38,8 @@ class GroupController < ApplicationController
   end
 
   def destroy
-    group = Group.find(params[:id]).destroy
+    group = Group.find(params[:id])
+    Group.destroy(group)
     redirect_to(:action => 'index')
   end
 
@@ -46,6 +47,12 @@ class GroupController < ApplicationController
     @group = Group.find(params[:id])
     current_user.groups << @group
     redirect_to(:action => 'show', :id => @group.id)
+  end
+
+  def unfollow
+    group = Group.find(params[:id])
+    current_user.groups.delete(group)
+    redirect_to(:action => 'index')
   end
 
   private

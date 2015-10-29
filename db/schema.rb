@@ -33,6 +33,13 @@ ActiveRecord::Schema.define(version: 20151028225721) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "groups_users", id: false, force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+  end
+
+  add_index "groups_users", ["group_id", "user_id"], name: "index_groups_users_on_group_id_and_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -52,12 +59,5 @@ ActiveRecord::Schema.define(version: 20151028225721) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
-  create_table "users_groups", id: false, force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "group_id"
-  end
-
-  add_index "users_groups", ["user_id", "group_id"], name: "index_users_groups_on_user_id_and_group_id", using: :btree
 
 end
