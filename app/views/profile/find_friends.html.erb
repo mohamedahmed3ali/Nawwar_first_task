@@ -1,12 +1,17 @@
 <!-- shows the user all registered members -->
 <% @users.each do |user| %>
-	<div class = "row">
-		<div class = "white-column"><%= user.id%></div>
-		<div class = "grey-column"><%= user.username%></div>
-		<img src="<%= user.image.url.to_s %>" style="width:60px;height:60px" class = "profile-image"></img>
-		<% if(current_user.id != user.id && !are_friends?(current_user.id, user.id)) %>
-			<!-- add is a button to add a friend  -->
-        	<%=link_to "Add", {:controller => 'friendships', :action => 'create', :id => user.id}%>
-        <%end%>
-	</div>
+	<% if(current_user.id != user.id) %>
+		<div class = "row">
+			<div class = "white-column"><%= user.id%></div>
+			<div class = "grey-column"><%= user.username%></div>
+			<img src="<%= user.image.url.to_s %>" style="width:60px;height:60px" class = "profile-image"></img>
+
+				<% if !are_friends?(current_user.id, user.id)%>
+					<!-- add is a button to add a friend  -->
+		        	<%=link_to "Add", {:controller => 'friendships', :action => 'create', :id => user.id}%>
+		        <%else%>
+		        	<%=link_to "Unfriend", {:controller => 'friendships', :action => 'delete', :id => user.id}%>
+	        	<%end%>
+		</div>
+	<%end%>
 <%end%>

@@ -4,5 +4,6 @@
 		<div class = "white-column"><%= friend.id%></div>
 		<div class = "grey-column"><%= friend.username%></div>
 		<img src="<%= friend.image.url.to_s %>" style="width:60px;height:60px" class = "profile-image"></img>
+		<%=link_to "Unfriend", {:controller => 'friendships', :action => 'delete', :id => friend.id}%>
 	</div>
 <%end%>
