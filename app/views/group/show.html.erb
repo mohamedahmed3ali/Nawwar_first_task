@@ -4,6 +4,10 @@
 	<div class = "white-column"><%= @group.description%></div>
 	<img src="<%= @group.image.url.to_s %>" style="width:90px;height:90px" class = "profile-image"></img>
 	<%=link_to "edit", { :action => 'edit', :id => @group.id}%>
-	<%=link_to "follow", { :action => 'follow', :id => @group.id}%>
+	<% if !is_follower?(current_user.id, @group.id)%>
+		<%=link_to "follow", { :action => 'follow', :id => @group.id}%>
+	<%else%>
+		<%=link_to "unfollow", { :action => 'unfollow', :id => @group.id}%>
+	<%end%>
 	<%=link_to "delete", { :action => 'delete', :id => @group.id}%>
 </div>

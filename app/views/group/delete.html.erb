@@ -1,6 +1,6 @@
 <div class = "page"> 
 	<%= form_for(:post,:url =>{ action: 'destroy', :id => @group.id}, :class => 'post-form') do |f| %>
-	<p> Are you sure you want to permanently this post </p>
-			<%= submit_tag("Delete Post", :class => 'post-submit')%>
+	<p> Are you sure you want to permanently this group </p>
+			<%= submit_tag("Delete Group", :class => 'post-submit')%>
 	<% end %>
 </div>
