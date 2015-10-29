@@ -1,0 +1,9 @@
+<div class = "row">
+	<div class = "white-column"><%= @group.id%></div>
+	<div class = "grey-column"><%= @group.name%></div>
+	<div class = "white-column"><%= @group.description%></div>
+	<img src="<%= @group.image.url.to_s %>" style="width:90px;height:90px" class = "profile-image"></img>
+	<%=link_to "edit", { :action => 'edit', :id => @group.id}%>
+	<%=link_to "follow", { :action => 'follow', :id => @group.id}%>
+	<%=link_to "delete", { :action => 'delete', :id => @group.id}%>
+</div>

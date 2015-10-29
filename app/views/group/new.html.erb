@@ -1,0 +1,11 @@
+<div class = "group">
+	<!-- creates new group -->
+	<%= form_for(:group,:url =>{ action: 'create'}, :class => 'form') do |f| %>
+		<div>
+			<%= f.text_field(:name)%>
+			<%= f.text_area(:description, :class => 'form-caption', size: "120x5")%>
+			<%= f.file_field(:image) %>
+			<%= submit_tag("Create group", :class => 'submit')%>
+		</div>
+	<% end %>
+</div>

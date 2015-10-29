@@ -11,8 +11,14 @@ class User < ActiveRecord::Base
   
   	has_many :friends, :class_name => :User, :through => :friendships, :source => :user2
 
+    # end of association between users and themselves
+
     # allow the user to have an image using Avatar uploader
-	  mount_uploader :image, AvatarUploader 
+    mount_uploader :image, AvatarUploader 
+
+    # performs many to many association between users and groups
+    has_and_belongs_to_many :groups
+    # end of the association betwen users and groups
 
     # signup validations
 
@@ -29,7 +35,8 @@ class User < ActiveRecord::Base
     # validates :email ,:presence => {:message => "Can't Be Blank"} , :on => :create
     validates :email ,:allow_blank => true ,:uniqueness => {:message => "Already Registerd"}
     validates_confirmation_of :email, {:message => "Please , Re-enter Your Email"}
+    # end of signup validations 
     scope :sorted, lambda { order("users.id DESC")}
 
-    # end of signup validations
+
 end

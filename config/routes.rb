@@ -1,5 +1,28 @@
 Rails.application.routes.draw do
 
+  get 'group/index'
+
+  get 'group/show'
+
+  get 'group/new'
+
+  get 'group/create'
+
+  get 'group/edit'
+
+  get 'group/update'
+
+  get 'group/delete'
+
+  get 'group/destroy'
+
+  post 'group/create'
+
+  post 'group/update'
+
+  post 'group/destroy'
+
+
   get 'frienships/create'
   
   get ':controller/:action/:id'

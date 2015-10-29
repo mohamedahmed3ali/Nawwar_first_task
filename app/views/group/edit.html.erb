@@ -1,0 +1,11 @@
+<div class = "group">
+	<!-- updates existing group -->
+	<%= form_for(:group,:url =>{ action: 'update', :id => @group.id}, :class => 'form') do |f| %>
+		<div>
+			<%= f.text_field(:name)%>
+			<%= f.text_area(:description, :class => 'form-caption', size: "120x5")%>
+			<%= f.file_field(:image) %>
+			<%= submit_tag("Update Group", :class => 'submit')%>
+		</div>
+	<% end %>
+</div>
