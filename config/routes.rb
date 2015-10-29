@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'ownership/create'
+
+  get 'ownership/index'
+
+  get 'ownership/delete'
+
   get 'group/index'
 
   get 'group/show'

@@ -14,7 +14,7 @@ class GroupController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to(:action => 'index')
+      redirect_to(:controller => 'ownerships', :action => 'create', :group_id => @group.id, :id => current_user.id)
     else
       redirect_to(:action => 'new')
     end
