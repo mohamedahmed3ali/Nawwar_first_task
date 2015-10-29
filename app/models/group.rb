@@ -1,6 +1,6 @@
 class Group < ActiveRecord::Base
 	has_and_belongs_to_many :followers, :class_name => 'User'
-	
+	has_many :ownerships
 	# allow the group to have an image using Avatar uploader
     mount_uploader :image, AvatarUploader 
     

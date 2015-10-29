@@ -27,6 +27,8 @@
         <!-- myfriends ,find friends and signout buton are viewed if the user is signed in -->
         <h4 class = "signup"> Welcome <%= current_user.username%></h4>	
         <%=link_to "My Friends", {:controller => 'friendships', :action => 'index'}, :id => current_user.id %>
+        <%=link_to "Groups", {:controller => 'group', :action => 'index'}%>
+        <%=link_to "Create a Group", {:controller => 'group', :action => 'new'}%>
         <%=link_to "Find Friends", {:controller => 'profile', :action => 'find_friends'} %>
         <%=link_to "Sign Out", destroy_user_session_path , method: :delete , :class => "signout" %>
     <%end%>
